@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css?family=Muli:300,700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+.mail-container {
+    background-color: #004177;
+    font-family: 'Muli', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.mail-box {
+    margin: 10px;
+    border: none;
+    padding: 30px;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+.mail-box h2 {
+    color: #fff;
+    margin: 10px 0 0;
+}
+
+.mail-box span {
+    color: #9e9b9b;
+    margin: 10px;
+}
+
+.form-control {
+    position: relative;
+    margin: 30px 0 20px;
+}
+
+.form-control input {
+    border: 0;
+    border-radius: 50px;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+    display: block;
+    font-family: 'Muli', sans-serif;
+    font-size: 14px;
+    height: 42px;
+    padding: 12px 25px;
+    width: 100%;
+}
+
+.form-control button {
+    background-color: #003580;
+    border: 0;
+    border-radius: 20px 10px 0 0px;
+    color: #fff;
+    font-size: 14px;
+    height: 42px;
+    padding: 12px 25px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.form-control input:focus{
+    outline: 0;
+}
+.form-control button:hover {
+        background-color: #1287b5;
+    border-radius: 20px 10px 0 0px;
+}
