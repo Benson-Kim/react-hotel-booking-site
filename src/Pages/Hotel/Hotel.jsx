@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from '../../Components/Navbar/Navbar'
 import { Header } from "../../Components/Header/Header"
 import MailList from "../../Components/MailList/MailList"
@@ -6,10 +6,13 @@ import Footer from "../../Components/Footer/Footer"
 import './hotel.css'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeartCircleBolt, faLocationDot } from '@fortawesome/free-solid-svg-icons'
+import { faCircleArrowLeft, faCircleArrowRight, faCircleXmark, faHeartCircleBolt, faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import { ExternalLink } from 'react-external-link'
 
 const Hotel = () => {
+  const [slideNumber, setSlideNumber] = useState(0)
+  const [open, setOpen] = useState(false)
+
   const photos = [
     {
       src: "https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/261707367.jpg?k=cbacfdeb8404af56a1a94812575d96f6b80f6740fd491d02c6fc3912a16d8757&o=&hp=1"
@@ -36,11 +39,34 @@ const Hotel = () => {
       src: "https://t-cf.bstatic.com/xdata/images/hotel/max1024x768/261708687.jpg?k=fa6f54ce30aecdd2757ba9f8b960fcc3751c47f0cd36603c9bab615dda596e23&o=&hp=1"
     },
   ];
+
+  const handleOpen = (i) => {
+    setSlideNumber(i)
+    setOpen(true)
+  };
+
+  const handleArrow = (direction) => {
+    let newSlideNo;
+    if (direction === "l") {
+      newSlideNo = slideNumber === 0 ? 5 : slideNumber - 1;
+    } else {
+      newSlideNo = slideNumber === 5 ? 0 : slideNumber + 1;
+    }
+
+    setSlideNumber(newSlideNo)
+  };
+
   return (
     <div>
       <Navbar />
       <Header type="list" />
       <div className='hotel-container'>
+        {open && <div className='slider'>
+          <FontAwesomeIcon icon={faCircleXmark} className='close' onClick={()=>setOpen(false)} />
+          <FontAwesomeIcon icon={faCircleArrowLeft} className='arrow' onClick={()=>handleArrow("l")}/>
+          <img src={ photos[slideNumber].src } alt='' className='slider-img' />
+          <FontAwesomeIcon icon={faCircleArrowRight} className='arrow' onClick={()=>handleArrow("r")}/>
+        </div>}
         <div className='hotel-wrapper'>
           <ExternalLink className='button' href='#' >Reserve or Book Now! </ExternalLink>
           <h1>Grand Hotel</h1>
@@ -51,9 +77,9 @@ const Hotel = () => {
           <span className='hotel-distance'>Excellent Location - 500m from center</span>
           <span className='hotel-price'> Book a stay over KES 30,551 at this property </span>
           <div className='hotel-images'>
-            {photos.map(photo => (
+            {photos.map((photo,i) => (
               <div className='hotel-img-wrapper'>
-                <img src={photo.src} alt="" className='hotel-img' />
+                <img src={photo.src} alt="" className='hotel-img' onClick={()=>handleOpen(i)} />
               </div>
             ))}
           </div>
